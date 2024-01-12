@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @kailasbk
+- 👋 Hi, I’m @kailasbk, currently a undergraduate senior in EECS at MIT.
 - 👀 I’m interested in programming in C/C++, Rust, and the different flavors of Assembly. I'm also interested in digital design and hardware description languages.
 
 <!---
