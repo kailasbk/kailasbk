@@ -1,29 +1,34 @@
 " most basic settings
 set nocompatible
+language en_US
 set encoding=utf-8
 filetype plugin indent on
-syntax enable
+
+" enable syntax highlighting
 set termguicolors
-set splitbelow
-set signcolumn=yes
+syntax enable
 
 " use relative and absolute line numbers
+set signcolumn=yes
 set number
 set relativenumber 
 set mouse=a
+set scrolloff=4
 
 " tab, backspace and wrap settings
-set wrap
+set nowrap
 set expandtab
 set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
 set backspace=indent,eol,start
-set nofixeol
 
 " use jj to exit insert
 inoremap jj <Esc>
+
+" use q for b
+nnoremap q b
 
 " user Esc * 2 to exit term
 tnoremap <Esc><Esc> <C-\><C-n>
@@ -31,91 +36,57 @@ tnoremap <Esc><Esc> <C-\><C-n>
 " disable arrow keys
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
 inoremap <Up> <nop>
 inoremap <Down> <nop>
 
+" disable C-f and C-b
+" prefer C-d and C-u
+nnoremap <C-f> <nop>
+nnoremap <C-b> <nop>
+
+" shift modify for fast j-k
+nnoremap <S-j> <C-d>
+nnoremap <S-k> <C-u>
+vnoremap <S-j> <C-d>
+vnoremap <S-k> <C-u>
+
+" ctrl modify for scrolling
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
+
 " tab navigation
-nnoremap <C-j> :tabprevious<CR>
-nnoremap <C-k> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
-
-" plugins
-call plug#begin('~/.vim/plugged')
-
-" Plug 'ervandew/supertab'
-
-Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
-
-Plug 'sheerun/vim-polyglot'
-
-let $FZF_DEFAULT_COMMAND='rg --files'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-map <C-p> :Files<CR> 
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-let g:coc_global_extensions = [
-            \'coc-json', 
-            \'coc-tsserver',
-            \'coc-clangd',
-            \'coc-python',
-            \'coc-texlab'
-            \]
-
-Plug 'vim-airline/vim-airline'
-let g:airline_powerline_fonts=1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.colnr = '㏇'
-let g:airline_symbols.colnr = '℅'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.maxlinenr = '㏑'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = 'Ɇ'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.colnr = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.dirty='⚡'
-
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-
-call plug#end()
 
 " set colorscheme
 set background=dark
-colorscheme onedark
+colorscheme retrobox
+
+" ruler at column 80
+set colorcolumn=80
+highlight ColorColumn guibg=#303030
+
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_winsize=40
+let g:netrw_browse_split=0
 
 " enable spellcheck for latex files
 autocmd BufRead,BufNewFile *.tex setlocal spell
 
+" enable spellcheck for text files
+autocmd Filetype text setlocal spell
+
 " enable spellcheck for markdown files
-autocmd BufRead,BufRead *.md.html set filetype=markdown
+autocmd BufRead,BufRead *.md.html setlocal filetype=markdown
 autocmd Filetype markdown setlocal spell
+
+" use tab size 2 for (system)verilog
+autocmd Filetype verilog setlocal tabstop=2 shiftwidth=2
+autocmd Filetype systemverilog setlocal tabstop=2 shiftwidth=2
+
+" use tab size 2 for lua
+autocmd Filetype lua setlocal tabstop=2 shiftwidth=2
