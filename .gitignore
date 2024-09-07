@@ -1,2 +1,2 @@
-# ignore git repos
-/neovim
+# ignore binary downloads
+*.tar.gz
