@@ -1,2 +1,2 @@
--- TODO: require("config.lazy")
+require("config.lazy")
 vim.cmd('source ~/.vimrc')

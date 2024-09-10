@@ -10,16 +10,20 @@ git config --global commit.verbose true
 git config --global alias.lol "log --graph --oneline --decorate --color --all"
 echo " done!"
 
+echo "Installing apt packages"
+sudo apt install -y \
+    ripgrep \
+
 # copy .vimrc, use preinstalled vim
 echo -n "Copying .vimrc..."
 cp .vimrc ~/.vimrc
 echo " done!"
 
-# install neovim from release binaries
-echo -n "Downloading nvim..."
-curl -s -LO https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz
+# download and install neovim release binaries
+echo "Downloading nvim..."
+curl -LO https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz
 tar -xzf nvim-linux64.tar.gz
-echo " done!"
+
 echo -n "Installing nvim..."
 sudo rm -rf /opt/neovim
 sudo mv nvim-linux64 /opt/neovim
@@ -29,17 +33,18 @@ echo " done!"
 # copy nvim init files
 echo -n "Copying init.lua..."
 cp init.lua ~/.config/nvim
+cp -r lua ~/.config/nvim
 echo " done!"
 
-echo -n "Downloading verible..."
-curl -s -LO https://github.com/chipsalliance/verible/releases/download/v0.0-3756-gda9a0f8c/verible-v0.0-3756-gda9a0f8c-linux-static-x86_64.tar.gz
+# download and install verible
+echo "Downloading verible..."
+curl -LO https://github.com/chipsalliance/verible/releases/download/v0.0-3756-gda9a0f8c/verible-v0.0-3756-gda9a0f8c-linux-static-x86_64.tar.gz
 tar -xzf verible-v0.0-3756-gda9a0f8c-linux-static-x86_64.tar.gz
-echo " done!"
+
 echo -n "Installing verible..."
 sudo rm -rf /opt/verible
 sudo mv verible-v0.0-3756-gda9a0f8c /opt/verible
 echo 'export PATH=$PATH:/opt/verible/bin' >> ~/.bashrc
-
 echo " done!"
 
 echo "Setup complete!"
