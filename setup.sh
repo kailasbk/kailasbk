@@ -1,7 +1,19 @@
+#!/bin/bash
 # this script does the following:
+# - adds missing locales
+# - installs essential apt packages
 # - copies config files into the proper places
 # - installs relevant software for those config files
 # - sets some other config values
+
+echo -n "Adding en_US locale..."
+sudo locale-gen en_US > /dev/null
+sudo update-locale > /dev/null
+echo " done!"
+
+echo "Installing apt packages..."
+sudo apt install -y \
+    ripgrep \
 
 echo -n "Setting .gitconfig..."
 git config --global user.name "Kailas B. Kahler"
@@ -9,10 +21,6 @@ git config --global core.editor nvim
 git config --global commit.verbose true
 git config --global alias.lol "log --graph --oneline --decorate --color --all"
 echo " done!"
-
-echo "Installing apt packages"
-sudo apt install -y \
-    ripgrep \
 
 # copy .vimrc, use preinstalled vim
 echo -n "Copying .vimrc..."
@@ -27,11 +35,15 @@ tar -xzf nvim-linux64.tar.gz
 echo -n "Installing nvim..."
 sudo rm -rf /opt/neovim
 sudo mv nvim-linux64 /opt/neovim
-echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
+if [ $(grep -c 'export PATH=$PATH:/opt/neovim/bin' ~/.bashrc) -eq 0 ]; then
+    echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
+fi
 echo " done!"
 
 # copy nvim init files
 echo -n "Copying init.lua..."
+rm -rf ~/.config/nvim
+mkdir ~/.config/nvim
 cp init.lua ~/.config/nvim
 cp -r lua ~/.config/nvim
 echo " done!"
@@ -44,7 +56,9 @@ tar -xzf verible-v0.0-3756-gda9a0f8c-linux-static-x86_64.tar.gz
 echo -n "Installing verible..."
 sudo rm -rf /opt/verible
 sudo mv verible-v0.0-3756-gda9a0f8c /opt/verible
-echo 'export PATH=$PATH:/opt/verible/bin' >> ~/.bashrc
+if [ $(grep -c 'export PATH=$PATH:/opt/verible/bin' ~/.bashrc) -eq 0 ]; then
+    echo 'export PATH=$PATH:/opt/verible/bin' >> ~/.bashrc
+fi
 echo " done!"
 
 echo "Setup complete!"
