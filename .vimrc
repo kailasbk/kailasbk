@@ -65,8 +65,8 @@ nnoremap <C-t> :tabnew<CR>
 set background=dark
 colorscheme retrobox
 
-" ruler at column 80
-set colorcolumn=80
+" ruler at column 100
+set colorcolumn=100
 highlight ColorColumn guibg=#303030
 
 let g:netrw_banner=0
@@ -75,14 +75,14 @@ let g:netrw_winsize=40
 let g:netrw_browse_split=0
 
 " enable spellcheck for latex files
-autocmd BufRead,BufNewFile *.tex setlocal spell
+autocmd Filetype tex setlocal spell tabstop=2 shiftwidth=2 textwidth=99
 
 " enable spellcheck for text files
-autocmd Filetype text setlocal spell
+autocmd Filetype text setlocal spell tabstop=2 shiftwidth=2 textwidth=99
 
 " enable spellcheck for markdown files
 autocmd BufRead,BufRead *.md.html setlocal filetype=markdown
-autocmd Filetype markdown setlocal spell
+autocmd Filetype markdown setlocal spell tabstop=2 shiftwidth=2 textwidth=99
 
 " use tab size 2 for (system)verilog
 autocmd Filetype verilog setlocal tabstop=2 shiftwidth=2
