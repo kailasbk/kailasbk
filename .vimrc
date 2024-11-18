@@ -75,14 +75,14 @@ let g:netrw_winsize=40
 let g:netrw_browse_split=0
 
 " enable spellcheck for latex files
-autocmd Filetype tex setlocal spell tabstop=2 shiftwidth=2 textwidth=99
+autocmd Filetype tex setlocal spell tabstop=2 shiftwidth=2 textwidth=79 colorcolumn=80
 
 " enable spellcheck for text files
-autocmd Filetype text setlocal spell tabstop=2 shiftwidth=2 textwidth=99
+autocmd Filetype text setlocal spell tabstop=2 shiftwidth=2 textwidth=79 colorcolumn=80
 
 " enable spellcheck for markdown files
 autocmd BufRead,BufRead *.md.html setlocal filetype=markdown
-autocmd Filetype markdown setlocal spell tabstop=2 shiftwidth=2 textwidth=99
+autocmd Filetype markdown setlocal spell tabstop=2 shiftwidth=2 textwidth=79 colorcolumn=80
 
 " use tab size 2 for (system)verilog
 autocmd Filetype verilog setlocal tabstop=2 shiftwidth=2
