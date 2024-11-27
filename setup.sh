@@ -14,6 +14,14 @@ echo " done!"
 echo "Installing apt packages..."
 sudo apt install -y \
     ripgrep \
+    texlive-latex-base \
+    texlive-latex-recommended \
+    texlive-latex-extra \
+    texlive-bibtex-extra \
+    texlive-science \
+    biber \
+    latexmk \
+    zathura \
 
 echo -n "Setting .gitconfig..."
 git config --global user.name "Kailas B. Kahler"
