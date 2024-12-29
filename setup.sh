@@ -6,11 +6,6 @@
 # - installs relevant software for those config files
 # - sets some other config values
 
-echo -n "Adding en_US locale..."
-sudo locale-gen en_US > /dev/null
-sudo update-locale > /dev/null
-echo " done!"
-
 echo "Installing apt packages..."
 sudo apt install -y \
     ripgrep \

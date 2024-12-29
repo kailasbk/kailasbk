@@ -1,6 +1,6 @@
 " most basic settings
 set nocompatible
-language en_US
+language en_US.UTF-8
 set encoding=utf-8
 filetype plugin indent on
 
