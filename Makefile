@@ -33,9 +33,9 @@ nvim: vim
 	@echo "Installing nvim..."
 	@sudo rm -rf /opt/neovim
 	@sudo mv nvim-linux64 /opt/neovim
-ifeq ($(shell grep 'export PATH=$$PATH:/opt/neovim/bin' ~/.bashrc),)
-	@echo 'export PATH=$$PATH:/opt/neovim/bin' >> ~/.bashrc
-endif
+	@if [ $$(grep -c 'export PATH=$$PATH:/opt/neovim/bin' ~/.bashrc) -eq 0 ]; then \
+		echo 'export PATH=$$PATH:/opt/neovim/bin' >> ~/.bashrc; \
+	fi
 	@echo "Copying init.lua..."
 	@rm -rf ~/.config/nvim
 	@mkdir ~/.config/nvim
@@ -50,7 +50,7 @@ verible:
 	@echo "Installing verible..."
 	@sudo rm -rf /opt/verible
 	@sudo mv verible-v0.0-3756-gda9a0f8c /opt/verible
-	ifeq ($(shell grep -c 'export PATH=$$PATH:/opt/verible/bin' ~/.bashrc), 0)
-		echo 'export PATH=$$PATH:/opt/verible/bin' >> ~/.bashrc
-	endif
+	@if [ $$(grep -c 'export PATH=$$PATH:/opt/verible/bin' ~/.bashrc) -eq 0 ]; then \
+		echo 'export PATH=$$PATH:/opt/verible/bin' >> ~/.bashrc; \
+	fi
 	@echo "Done!"
