@@ -28,7 +28,7 @@ vim:
 
 nvim: vim
 	@echo "Downloading nvim..."
-	@curl -LO https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz
+	@curl -sLO https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz
 	@tar -xzf nvim-linux64.tar.gz
 	@echo "Installing nvim..."
 	@sudo rm -rf /opt/neovim
@@ -45,7 +45,7 @@ nvim: vim
 
 verible:
 	@echo "Downloading verible..."
-	@curl -LO https://github.com/chipsalliance/verible/releases/download/v0.0-3756-gda9a0f8c/verible-v0.0-3756-gda9a0f8c-linux-static-x86_64.tar.gz
+	@curl -sLO https://github.com/chipsalliance/verible/releases/download/v0.0-3756-gda9a0f8c/verible-v0.0-3756-gda9a0f8c-linux-static-x86_64.tar.gz
 	@tar -xzf verible-v0.0-3756-gda9a0f8c-linux-static-x86_64.tar.gz
 	@echo "Installing verible..."
 	@sudo rm -rf /opt/verible
