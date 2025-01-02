@@ -49,19 +49,3 @@ nvim: vim
 	@cp init.lua ~/.config/nvim
 	@cp -r lua ~/.config/nvim
 	@echo "Done!"
-
-verible:
-	@echo "Downloading verible..."
-	@curl -sLO https://github.com/chipsalliance/verible/releases/download/$(VERIBLE)/verible-$(VERIBLE)-linux-static-x86_64.tar.gz
-	@echo "Extracting verible..."
-	@tar -xzf verible-$(VERIBLE)-linux-static-x86_64.tar.gz
-	@echo "Installing verible..."
-	@sudo rm -rf /opt/verible
-	@sudo mv verible-$(VERIBLE) /opt/verible
-	@if [ $$(grep -c 'export PATH=$$PATH:/opt/verible/bin' ~/.bashrc) -eq 0 ]; then \
-		echo "Adding verible to PATH..."; \
-		echo 'export PATH=$$PATH:/opt/verible/bin' >> ~/.bashrc; \
-	else \
-		echo "PATH already includes verible..."; \
-	fi
-	@echo "Done!"

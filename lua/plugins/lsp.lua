@@ -41,6 +41,7 @@ return {
     opts = {
       ensure_installed = {
         "clangd",
+        "verible",
       },
     },
   },
@@ -50,8 +51,7 @@ return {
       "mason.nvim",
       "mason-lspconfig.nvim",
     },
-    opts = {
-    },
+    opts = {},
     config = function(_, opts)
       require("lspconfig").clangd.setup({})
       require("lspconfig").verible.setup({})
