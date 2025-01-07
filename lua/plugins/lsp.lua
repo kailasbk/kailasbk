@@ -53,8 +53,17 @@ return {
     },
     opts = {},
     config = function(_, opts)
-      require("lspconfig").clangd.setup({})
-      require("lspconfig").verible.setup({})
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      require("lspconfig").clangd.setup({
+        capabilities = capabilities,
+        cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
+        init_options = {
+          fallbackFlags = { '-std=c++17' },
+        },
+      })
+      require("lspconfig").verible.setup({
+        capabilities = capabilities,
+      })
     end,
   },
 }
