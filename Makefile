@@ -18,20 +18,21 @@ apt:
 		biber \
 		latexmk \
 		zathura
+	@echo "Done installing apt packages!"
 
 git:
 	@echo "Setting .gitconfig..."
 	@git config --global user.name "Kailas B. Kahler"
 	@git config --global commit.verbose true
 	@git config --global alias.lol "log --graph --oneline --decorate --color --all"
-	@echo "Done!"
+	@echo "Done setting .gitconfig!"
 
 vim:
-	@echo -n "Copying .vimrc..."
+	@echo "Copying .vimrc..."
 	@cp .vimrc ~/.vimrc
 	@echo "Using vim for git commits..."
 	@git config --global core.editor "vim"
-	@echo "Done!"
+	@echo "Done installing vim!"
 
 nvim: vim
 	@echo "Downloading nvim..."
@@ -63,4 +64,4 @@ nvim: vim
 	@cp -r lua ~/.config/nvim
 	@echo "Using nvim for git commits..."
 	@git config --global core.editor "nvim"
-	@echo "Done!"
+	@echo "Done installing nvim!"
