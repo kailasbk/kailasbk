@@ -1,6 +1,9 @@
 NVIM := v0.10.1
 VERIBLE := v0.0-3756-gda9a0f8c
 
+INSTALL_PREFIX ?= ~/.local
+RC_PATH ?= ~/.bashrc
+
 all: apt git nvim
 
 apt:
@@ -19,7 +22,7 @@ apt:
 git:
 	@echo "Setting .gitconfig..."
 	@git config --global user.name "Kailas B. Kahler"
-	@git config --global core.editor nvim
+	@git config --global core.editor vim
 	@git config --global commit.verbose true
 	@git config --global alias.lol "log --graph --oneline --decorate --color --all"
 	@echo "Done!"
@@ -35,13 +38,22 @@ nvim: vim
 	@echo "Extracting nvim..."
 	@tar -xzf nvim-linux64.tar.gz
 	@echo "Installing nvim..."
-	@sudo rm -rf /opt/neovim
-	@sudo mv nvim-linux64 /opt/neovim
-	@if [ $$(grep -c 'export PATH=$$PATH:/opt/neovim/bin' ~/.bashrc) -eq 0 ]; then \
+	@mkdir -p $(INSTALL_PREFIX)
+	@mkdir -p $(INSTALL_PREFIX)/bin
+	@cp nvim-linux64/bin/* $(INSTALL_PREFIX)/bin
+	@mkdir -p $(INSTALL_PREFIX)/lib
+	@cp -r nvim-linux64/lib/* $(INSTALL_PREFIX)/lib
+	@mkdir -p $(INSTALL_PREFIX)/share
+	@cp -r nvim-linux64/share/* $(INSTALL_PREFIX)/share
+	@if [ $$(grep -c 'export PATH=$$PATH:$(INSTALL_PREFIX)/bin' $(RC_PATH)) -eq 0 ]; then \
 		echo "Adding nvim to PATH..."; \
-		echo 'export PATH=$$PATH:/opt/neovim/bin' >> ~/.bashrc; \
+		echo 'export PATH=$$PATH:$(INSTALL_PREFIX)/bin' >> $(RC_PATH); \
 	else \
 		echo "PATH already includes nvim..."; \
+	fi
+	@if [ $$(grep -c 'alias vim="nvim"' $(RC_PATH)) -eq 0 ]; then \
+		echo "Aliasing nvim as vim..."; \
+		echo 'alias vim="nvim"' >> $(RC_PATH); \
 	fi
 	@echo "Copying init.lua..."
 	@rm -rf ~/.config/nvim
