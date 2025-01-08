@@ -22,7 +22,6 @@ apt:
 git:
 	@echo "Setting .gitconfig..."
 	@git config --global user.name "Kailas B. Kahler"
-	@git config --global core.editor vim
 	@git config --global commit.verbose true
 	@git config --global alias.lol "log --graph --oneline --decorate --color --all"
 	@echo "Done!"
@@ -30,6 +29,8 @@ git:
 vim:
 	@echo -n "Copying .vimrc..."
 	@cp .vimrc ~/.vimrc
+	@echo "Using vim for git commits..."
+	@git config --global core.editor "vim"
 	@echo "Done!"
 
 nvim: vim
@@ -60,4 +61,6 @@ nvim: vim
 	@mkdir ~/.config/nvim
 	@cp init.lua ~/.config/nvim
 	@cp -r lua ~/.config/nvim
+	@echo "Using nvim for git commits..."
+	@git config --global core.editor "nvim"
 	@echo "Done!"
