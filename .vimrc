@@ -57,8 +57,8 @@ nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
 
 " tab navigation
-nnoremap <C-h> :tabprevious<CR>
-nnoremap <C-l> :tabnext<CR>
+nnoremap <S-h> :tabprevious<CR>
+nnoremap <S-l> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 
 " set colorscheme
