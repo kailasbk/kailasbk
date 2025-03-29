@@ -17,6 +17,8 @@ set scrolloff=4
 
 " tab, backspace and wrap settings
 set nowrap
+set linebreak
+set breakindent
 set expandtab
 set autoindent
 set smartindent
@@ -75,14 +77,14 @@ let g:netrw_winsize=40
 let g:netrw_browse_split=0
 
 " enable spellcheck for latex files
-autocmd Filetype tex setlocal spell tabstop=2 shiftwidth=2 textwidth=79 colorcolumn=80
+autocmd Filetype tex setlocal spell wrap tabstop=2 shiftwidth=2
 
 " enable spellcheck for text files
-autocmd Filetype text setlocal spell tabstop=2 shiftwidth=2 textwidth=79 colorcolumn=80
+autocmd Filetype text setlocal spell tabstop=2 shiftwidth=2
 
 " enable spellcheck for markdown files
 autocmd BufRead,BufRead *.md.html setlocal filetype=markdown
-autocmd Filetype markdown setlocal spell tabstop=2 shiftwidth=2 textwidth=79 colorcolumn=80
+autocmd Filetype markdown setlocal spell tabstop=2 shiftwidth=2
 
 " use tab size 2 for (system)verilog
 autocmd Filetype verilog setlocal tabstop=2 shiftwidth=2
