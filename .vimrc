@@ -26,6 +26,9 @@ set tabstop=4
 set shiftwidth=4
 set backspace=indent,eol,start
 
+" use smartcase search
+set ignorecase smartcase
+
 " use jj to exit insert
 inoremap jj <Esc>
 
